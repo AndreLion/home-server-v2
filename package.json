@@ -1,0 +1,30 @@
+{
+  "name": "home-server-v2",
+  "version": "1.0.0",
+  "description": "Powered by China Telecom and Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreLion/home-server-v2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreLion/home-server-v2/issues"
+  },
+  "homepage": "https://github.com/AndreLion/home-server-v2",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-git": "^1.1.0",
+    "gulp-livereload": "^3.8.0"
+  },
+  "dependencies": {
+    "express": "^4.12.3",
+    "vhost": "^3.0.0"
+  }
+}
