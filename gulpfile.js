@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     git = require('gulp-git'),
     del = require('del'),
     replace = require('gulp-replace-task'),
+    processhtml = require('gulp-processhtml'),
     livereload = require('gulp-livereload');
 
 var CONST = {
@@ -69,8 +70,11 @@ gulp.task('release', function(){
                 .pipe(gulp.dest('dist/lib/fonts/'));
             gulp.src('tmp/src/**/*.*')
                 .pipe(gulp.dest('dist'));
-            gulp.src('dist/index.html')
+            /*gulp.src('dist/index.html')
                 .pipe(replace(jsxPattern))
+                .pipe(gulp.dest('dist'));*/
+            gulp.src('dist/**/*.html')
+                .pipe(processhtml())
                 .pipe(gulp.dest('dist'));
             del(['tmp']);
         });
