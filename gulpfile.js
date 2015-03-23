@@ -46,6 +46,14 @@ var jsxPattern = {
 gulp.task('default', function(){
 });
 
+//##################### dev #############################
+
+gulp.task('dev',[
+    'dev_jslib',
+    'dev_csslib',
+    'dev_fontslib'
+]);
+
 gulp.task('dev_jslib', function(){
     return gulp.src(config.lib.js)
         .pipe(concat('lib.js'))
@@ -63,10 +71,19 @@ gulp.task('dev_fontslib', function(){
         .pipe(gulp.dest('src/lib/fonts/'));
 });
 
-gulp.task('dev',['dev_jslib','dev_csslib','dev_fontslib']);
+//##################### release #############################
 
-//#####################release#############################
-gulp.task('release', ['clone','cleandist','release_jslib','release_csslib','release_fontslib','release_src','cleantmp','replace','react']);
+gulp.task('release', [
+    'clone',
+    'cleandist',
+    'release_jslib',
+    'release_csslib',
+    'release_fontslib',
+    'release_src',
+    'cleantmp',
+    'replace',
+    'react'
+]);
 
 gulp.task('clone', function(cb){
     git.clone(pkg.repository.url,{args: 'tmp'},function(err){
