@@ -36,8 +36,8 @@ var config = {
 var jsxPattern = {
     patterns: [
         {
-            match: 'text',
-            replacement: 'css'
+            match: /type="text\/jsx"/g,
+            replacement: ''
         }
     ]
 };
@@ -55,6 +55,38 @@ gulp.task('dev', function(){
     gulp.src(config.lib.fonts)
         .pipe(gulp.dest('src/lib/fonts/'));
 });
+
+gulp.task('clone2tmp', function(cb){
+    git.clone('https://github.com/AndreLion/home-server-v2',{args: 'tmp'},function(err){
+        cb(err);
+    });
+});
+
+gulp.task('tmp2dist', ['clone2tmp'], function(cb){
+    del(['dist'],function(){
+        gulp.src(config.lib.js_release)
+            .pipe(concat('lib.js'))
+            .pipe(gulp.dest('dist/lib/js/'));
+        gulp.src(config.lib.css)
+            .pipe(concat('lib.css'))
+            .pipe(gulp.dest('dist/lib/css/'));
+        gulp.src(config.lib.fonts)
+            .pipe(gulp.dest('dist/lib/fonts/'));
+        gulp.src('tmp/src/**/*.*')
+            .pipe(gulp.dest('dist'));
+        del(['tmp'],function(){
+            cb();
+        });
+    });
+});
+
+gulp.task('processdist', ['tmp2dist'], function(cb){
+    gulp.src('dist/index.html')
+        .pipe(replace(jsxPattern))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('test', ['clone2tmp','tmp2dist','processdist']);
 
 gulp.task('release', function(){
     git.clone('https://github.com/AndreLion/home-server-v2',{args: 'tmp'},function(err){
@@ -88,3 +120,4 @@ gulp.task('watch', function() {
             .pipe(livereload());
     });
 });
+
