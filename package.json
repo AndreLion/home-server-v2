@@ -17,11 +17,12 @@
   },
   "homepage": "https://github.com/AndreLion/home-server-v2",
   "devDependencies": {
+    "del": "^1.1.1",
     "gulp": "^3.8.11",
-    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-git": "^1.1.0",
-    "gulp-livereload": "^3.8.0"
+    "gulp-livereload": "^3.8.0",
+    "gulp-replace-task": "^0.1.0"
   },
   "dependencies": {
     "express": "^4.12.3",
