@@ -37,3 +37,6 @@ bower_components
 tmp
 src/lib
 dist
+
+# git head data
+.gitinfo
