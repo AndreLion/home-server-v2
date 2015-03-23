@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     git = require('gulp-git'),
     del = require('del'),
     replace = require('gulp-replace-task'),
-    processhtml = require('gulp-processhtml'),
+    jsx = require('gulp-jsx'),
     livereload = require('gulp-livereload');
 
 var CONST = {
@@ -84,34 +84,12 @@ gulp.task('processdist', ['tmp2dist'], function(cb){
     gulp.src('dist/index.html')
         .pipe(replace(jsxPattern))
         .pipe(gulp.dest('dist'));
+    gulp.src('dist/js/**/*.js')
+        .pipe(jsx())
+        .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('test', ['clone2tmp','tmp2dist','processdist']);
-
-gulp.task('release', function(){
-    git.clone('https://github.com/AndreLion/home-server-v2',{args: 'tmp'},function(err){
-        //if (err) throw err;
-        del(['dist'],function(){
-            gulp.src(config.lib.js_release)
-                .pipe(concat('lib.js'))
-                .pipe(gulp.dest('dist/lib/js/'));
-            gulp.src(config.lib.css)
-                .pipe(concat('lib.css'))
-                .pipe(gulp.dest('dist/lib/css/'));
-            gulp.src(config.lib.fonts)
-                .pipe(gulp.dest('dist/lib/fonts/'));
-            gulp.src('tmp/src/**/*.*')
-                .pipe(gulp.dest('dist'));
-            gulp.src('dist/index.html')
-                .pipe(replace(jsxPattern))
-                .pipe(gulp.dest('dist'));
-            /*gulp.src('dist/*.html')
-                .pipe(processhtml())
-                .pipe(gulp.dest('dist'));*/
-            del(['tmp']);
-        });
-    });
-});
+gulp.task('release', ['clone2tmp','tmp2dist','processdist']);
 
 gulp.task('watch', function() {
     livereload.listen();
