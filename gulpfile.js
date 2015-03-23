@@ -1,3 +1,4 @@
+var pkg = require('./package.json');
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     git = require('gulp-git'),
@@ -68,7 +69,7 @@ gulp.task('dev',['dev_jslib','dev_csslib','dev_fontslib']);
 gulp.task('release', ['clone','cleandist','release_jslib','release_csslib','release_fontslib','release_src','cleantmp','replace','react']);
 
 gulp.task('clone', function(cb){
-    git.clone('https://github.com/AndreLion/home-server-v2',{args: 'tmp'},function(err){
+    git.clone(pkg.repository.url,{args: 'tmp'},function(err){
         if (err) return cb(err);
         cb(err);
     });
