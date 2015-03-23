@@ -11,23 +11,23 @@ fs.readFile('/home/pi/home-server-v2/.gitinfo', function (err, data) {
     var latest_commit = exec('git ls-remote https://github.com/andrelion/home-server-v2 | grep HEAD').output.split('\t')[0];
     console.log('git repo latest_commit:',latest_commit);
     if(!json.latest_commit || json.latest_commit !== latest_commit){
-        console.log('rebuild');
-        rm('-rf','/home/pi/home-server');
-        exec('git clone https://github.com/AndreLion/home-server',{async:true,silent:true},function(code,output){
+        console.log('rebuild release');
+        //rm('-rf','/home/pi/home-server');
+        exec('gulp release',{async:true,silent:true},function(code,output){
             console.log(output);
-            exec('forever stop 0',{async:true,silent:true},function(code,output){
-                exec('forever start --minUptime 5000 --spinSleepTime 6000 -m 5 /home/pi/home-server/index.js',{async:true,silent:true},function(code,output){
+            //exec('forever stop 0',{async:true,silent:true},function(code,output){
+                //exec('forever start --minUptime 5000 --spinSleepTime 6000 -m 5 /home/pi/home-server/index.js',{async:true,silent:true},function(code,output){
                     console.log(output);
                     json.latest_commit = latest_commit;
-                    fs.writeFile("/home/pi/home-server.json", JSON.stringify(json), function(err) {
+                    fs.writeFile("/home/pi/home-server-v2/.gitinfo", JSON.stringify(json), function(err) {
                         if(err) {
                             console.log(err);
                         } else {
-                            console.log("home-server.json updated.");
+                            console.log(".gitinfo updated.");
                         }
                     }); 
-                });
-            });
+                //});
+            //});
         });
     }else{
         console.log('no update');
