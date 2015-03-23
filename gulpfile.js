@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     git = require('gulp-git'),
     del = require('del'),
     replace = require('gulp-replace-task'),
-    jsx = require('gulp-jsx'),
+    react = require('gulp-react'),
     livereload = require('gulp-livereload');
 
 var CONST = {
@@ -45,51 +45,83 @@ var jsxPattern = {
 gulp.task('default', function(){
 });
 
-gulp.task('dev', function(){
-    gulp.src(config.lib.js)
+gulp.task('dev_jslib', function(){
+    return gulp.src(config.lib.js)
         .pipe(concat('lib.js'))
         .pipe(gulp.dest('src/lib/js/'));
-    gulp.src(config.lib.css)
+});
+
+gulp.task('dev_csslib', function(){
+    return gulp.src(config.lib.css)
         .pipe(concat('lib.css'))
         .pipe(gulp.dest('src/lib/css/'));
-    gulp.src(config.lib.fonts)
+});
+
+gulp.task('dev_fontslib', function(){
+    return gulp.src(config.lib.fonts)
         .pipe(gulp.dest('src/lib/fonts/'));
 });
 
-gulp.task('clone2tmp', function(cb){
+gulp.task('dev',['dev_jslib','dev_csslib','dev_fontslib']);
+
+//#####################release#############################
+gulp.task('release', ['clone','cleandist','release_jslib','release_csslib','release_fontslib','release_src','cleantmp','replace','react']);
+
+gulp.task('clone', function(cb){
     git.clone('https://github.com/AndreLion/home-server-v2',{args: 'tmp'},function(err){
+        if (err) return cb(err);
         cb(err);
     });
 });
 
-gulp.task('tmp2dist', ['clone2tmp'], function(cb){
+gulp.task('cleandist',['clone'], function(cb){
     del(['dist'],function(){
-        gulp.src(config.lib.js_release)
-            .pipe(concat('lib.js'))
-            .pipe(gulp.dest('dist/lib/js/'));
-        gulp.src(config.lib.css)
-            .pipe(concat('lib.css'))
-            .pipe(gulp.dest('dist/lib/css/'));
-        gulp.src(config.lib.fonts)
-            .pipe(gulp.dest('dist/lib/fonts/'));
-        gulp.src('tmp/src/**/*.*')
-            .pipe(gulp.dest('dist'));
-        del(['tmp'],function(){
-            cb();
-        });
+        cb();
     });
 });
 
-gulp.task('processdist', ['tmp2dist'], function(cb){
-    gulp.src('dist/index.html')
+gulp.task('release_jslib',['cleandist'], function(cb){
+    return gulp.src(config.lib.js_release)
+        .pipe(concat('lib.js'))
+        .pipe(gulp.dest('dist/lib/js/'));
+});
+
+gulp.task('release_csslib',['release_jslib'], function(cb){
+    return gulp.src(config.lib.css)
+        .pipe(concat('lib.css'))
+        .pipe(gulp.dest('dist/lib/css/'));
+});
+
+gulp.task('release_fontslib',['release_csslib'], function(cb){
+    return gulp.src(config.lib.fonts)
+        .pipe(gulp.dest('dist/lib/fonts/'));
+});
+
+gulp.task('release_src',['release_fontslib'], function(cb){
+    return gulp.src('tmp/src/**/*.*')
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('cleantmp',['release_src'], function(cb){
+    del(['tmp'],function(){
+        cb();
+    });
+});
+
+gulp.task('replace',['cleantmp'], function(cb){
+    return gulp.src('dist/index.html')
         .pipe(replace(jsxPattern))
         .pipe(gulp.dest('dist'));
-    gulp.src('dist/js/**/*.js')
-        .pipe(jsx())
+});
+
+gulp.task('react',['replace'], function(cb){
+    return gulp.src('dist/js/**/*.js')
+        .pipe(react())
         .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('release', ['clone2tmp','tmp2dist','processdist']);
+//#######################################################
+
 
 gulp.task('watch', function() {
     livereload.listen();
