@@ -24,11 +24,11 @@ var config = {
             CONST.bower+'/showdown/compressed/Showdown.min.js'
         ],
         css:[
-            CONST.bower+'/bootstrap/dist/css/bootstrap.min.css',
+            //CONST.bower+'/bootstrap/dist/css/bootstrap.min.css',
             CONST.bower+'/font-awesome/css/font-awesome.min.css'
         ],
         fonts:[
-            CONST.bower+'/bootstrap/dist/fonts/*.*',
+            //CONST.bower+'/bootstrap/dist/fonts/*.*',
             CONST.bower+'/font-awesome/fonts/*.*'
         ]
     }

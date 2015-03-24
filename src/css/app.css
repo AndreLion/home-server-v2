@@ -1,0 +1,3 @@
+.building { background-color:#EEE; }
+.building .elevator { }
+.building .elevator#ele2nd .label { display:none; }
