@@ -6,80 +6,92 @@
         <link rel="stylesheet" href="css/app.css" />
     </head>
     <body>
-        <div>Powered by China Twell elevator-1com, Raspberry Pi and pure Javascript</div>
+        <div>Powered by China Telecom, Raspberry Pi and pure Javascript</div>
         <div>Still under development, please stay tuned.</div>
         <a href="https://github.com/AndreLion/home-server-v2/">Source Code</a>
         <div class="building">
             <div class="floor floor-8">
-                <span class="label">8</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">8</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-7">
-                <span class="label">7</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">7</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-6">
-                <span class="label">6</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">6</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-5">
-                <span class="label">5</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">5</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-3">
-                <span class="label">3</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">3</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-2">
-                <span class="label">2</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">2</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-1">
-                <span class="label">1</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">1</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
+                <span class="room"></span>
                 <span class="outer"></span>
             </div>
             <div class="floor floor-g">
-                <span class="label">G</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">G</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
-                <span class="outer"></span>
+                <span class="room"></span>
+                <span class="outer">
+                    <i class="fa fa-tree"></i>
+                    <i class="fa fa-bus"></i>
+                </span>
             </div>
             <div class="floor floor-b1">
-                <span class="label">B1</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">B1</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
-                <span class="outer"></span>
+                <span class="room"></span>
+                <span class="outer">
+                    <i class="fa fa-car"></i>
+                    <i class="fa fa-car"></i>
+                    <i class="fa fa-car"></i>
+                    <i class="fa fa-car"></i>
+                </span>
             </div>
             <div class="floor floor-b2">
-                <span class="label">B2</span>
-                <span class="well elevator-1"></span>
+                <span class="mark">B2</span>
+                <span class="room"></span>
                 <span class="gap"></span>
-                <span class="well elevator-2"></span>
-                <span class="outer"></span>
+                <span class="room"></span>
+                <span class="outer">
+                    <i class="fa fa-subway"></i>
+                </span>
             </div>
+            <div class="elevator" id="ele1st"></div>
+            <div class="elevator" id="ele2nd"></div>
         </div>
         <div id="content"></div>
         <script src="lib/js/lib.js"></script>
