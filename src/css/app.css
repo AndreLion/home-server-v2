@@ -1,4 +1,6 @@
-.building { background-color:#EFEFEF;position:relative; }
+.wrap { }
+
+.building { background-color:#EFEFEF;position:relative;width:400px;float:left;border-top:1px solid #EFEFEF; }
 .building .floor { background-color:#DDD;height:61px; }
 .building .floor:first-child { height:62px; }
 .building .floor>* { display:inline-block;height:61px; }
@@ -8,7 +10,9 @@
 .building .floor:first-child .room { border-top-width:1px; }
 .building .gap { width:20px; }
 .building .outer { width:150px;line-height:61px;vertical-align:top;padding-left:15px; }
-.building .fa { font-size:18px;vertical-align:bottom; }
+.building .fa { font-size:22px;vertical-align:bottom; }
+.building .floor-b1 .fa { font-size:20px; }
+.building .floor-b2 .fa { font-size:30px; }
 
 .building .floor-g { border-bottom:1px solid #111; }
 .building .floor-b1,
@@ -17,3 +21,7 @@
 .building .elevator { position:absolute;height:60px;width:60px;background-color:#FFF;top:1px;border:5px solid skyblue;-webkit-transition:-webkit-transform 1s ease-in-out; }
 .building #ele1st { -webkit-transform:translate3d(67px,244px,0); }
 .building #ele2nd { -webkit-transform:translate3d(157px,427px,0); }
+
+.personal { float:left;width:802px;height:612px;border:1px solid #000;position:relative; }
+.personal-inner { width:0;height:0;border-right:400px solid #FFF;border-left:400px solid #FFF;border-bottom:305px solid #DDD;border-top:305px solid #DDD; }
+.personal .lobby { width:400px;height:306px;position:absolute;background-color:#FFF;top:152px;left:200px;border-right:1px solid #999;border-left:1px solid #999; }
