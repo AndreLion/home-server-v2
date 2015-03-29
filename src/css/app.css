@@ -25,3 +25,12 @@
 .personal { float:left;width:802px;height:612px;border:1px solid #000;position:relative; }
 .personal-inner { width:0;height:0;border-right:400px solid #FFF;border-left:400px solid #FFF;border-bottom:305px solid #DDD;border-top:305px solid #DDD; }
 .personal .lobby { width:400px;height:306px;position:absolute;background-color:#FFF;top:152px;left:200px;border-right:1px solid #999;border-left:1px solid #999; }
+.personal .number { text-align:center;font-size:20px;background-color:red;padding-top:65px; }
+.personal .wall { background-color:green;height:213px; }
+.personal .wall>* { float:left; }
+.personal .elevator-wrap { width:45%;background-color:blue;height:100%; }
+.personal .btn-wrap { width:10%;background-color:orange;height:100%; }
+.personal .top-light { width:100%;background-color:green;height:43px; }
+.personal .door { width:100px;height:150px;margin-top:20px;margin-left:40px;background-color:yellow;position:relative; }
+.personal .door-perspective { position:absolute;height:0;width:0;top:0;left:0;border-top:75px solid #AAA;border-bottom:75px solid #AAA;border-left:50px solid #FFF;border-right:50px solid #FFF; }
+.personal .door-perspective:after { content:' ';position:absolute;height:20px;width:20px;background-color:#333;top:-10px;left:-10px; }
